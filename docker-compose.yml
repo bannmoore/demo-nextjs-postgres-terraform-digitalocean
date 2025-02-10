@@ -1,0 +1,25 @@
+services:
+  postgres:
+    build:
+      context: ./super-duper-db
+    image: postgres:17
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./_local_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: ./super-duper-app
+      tags:
+        - "registry.digitalocean.com/bam/super-duper-app"
+    environment:
+      DATABASE_URL: postgres://postgres:password@postgres/postgres?sslmode=disable
+    env_file: ./super-duper-app/.env.local
+    depends_on:
+      - postgres
+    ports:
+      - 3000:80

@@ -1,0 +1,10 @@
+_local_data
+.terraform/
+.terraform.lock.hcl
+.terraform.tfstate.lock.info
+terraform.tfvars
+terraform.tfstate
+terraform.tfstate.backup
+.env
+.jump.env
+.local.env
