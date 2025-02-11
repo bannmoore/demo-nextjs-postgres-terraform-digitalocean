@@ -9,7 +9,7 @@ resource "digitalocean_app" "super_duper_app" {
     }
 
     service {
-      name               = "web"
+      name               = "app"
       http_port          = 80
       instance_count     = 1
       instance_size_slug = "basic-xxs"

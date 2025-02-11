@@ -1,6 +1,6 @@
 # https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/data-sources/ssh_key
 resource "digitalocean_ssh_key" "super_duper_jump_server_ssh_key" {
-  name       = "super-duper-jump-server-ss-hkey"
+  name       = "super-duper-jump-server-ssh-key"
   public_key = file("${var.jump_server_ssh_key_path}.pub")
 }
 

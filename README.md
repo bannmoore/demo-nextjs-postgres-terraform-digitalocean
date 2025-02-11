@@ -119,6 +119,7 @@ This [jump server](https://en.wikipedia.org/wiki/Jump_server#:~:text=A%20jump%20
 
 - [NodeJS](https://nodejs.org/en/download) installed locally (`which npx`)
 - [Docker for Desktop](https://www.docker.com/get-started/) installed locally (`which docker`)
+- [Doctl](https://github.com/digitalocean/doctl) (`which doctl`)
 - A DigitalOcean account
 
 **Heads up: **This setup isn't particularly expensive, but it _could_ occur costs. Be sure to remove any created resources when you're done by calling the `./bin/teardown_infrastructure.sh` script.
@@ -126,7 +127,7 @@ This [jump server](https://en.wikipedia.org/wiki/Jump_server#:~:text=A%20jump%20
 ### Guide
 
 1. On your DigitalOcean console, create a new API Access Token.
-2. On your DigialOcean console, create a Container Registry if you don't already have one. This project requires one available "repo" slot.
+2. On your DigialOcean console, create a Container Registry if you don't already have one. This project requires one available "repo" slot. Make sure you open the `bin/deploy_application.sh` script and update the `CONTAINER_REGISTRY` variable with the name of your registry (mine is "bam").
 3. Clone this repository.
 4. Run the deployment scripts:
 
@@ -143,7 +144,7 @@ export DIGITALOCEAN_TOKEN="MY_TOKEN" # token from DigitalOcean
 5. Connect to the jump server:
 
 ```sh
-./bin/connection_to_jump_server.sh
+./bin/connect_to_jump_server.sh
 ```
 
 6. While connected to the jump server, run the following:
@@ -170,6 +171,9 @@ cd ./super-duper-db
 8. When you're done with everything, tear down the infrastructure so you don't get charged!
 
 ```sh
+./bin/teardown_infrastructure.sh
+
+# You'll probably need to run this twice to delete the VPC, due to dependencies.
 ./bin/teardown_infrastructure.sh
 ```
 
